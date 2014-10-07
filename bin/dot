@@ -6,6 +6,8 @@
 # to make sure you're on the latest and greatest.
 export ZSH=$HOME/.dotfiles
 
+$ZSH/script/install
+
 if [ "$(uname -s)" = "Darwin" ]; then
   # Set OS X defaults
   $ZSH/osx/set-defaults.sh

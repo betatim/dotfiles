@@ -7,4 +7,6 @@ set -e
 cd "$(dirname $0)"/..
 
 # find the installers and run them iteratively
-find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
+# however the homebrew one is special `dot` decides
+# by itself if it needs to run it or not
+find . -name install.sh | grep -v homebrew | while read installer ; do sh -c "${installer}" ; done
