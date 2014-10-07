@@ -1,8 +1,8 @@
-# shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/.dotfiles
+# shortcut to this dotfiles path is $BASH
+export BASH=$HOME/.dotfiles
 
 # your project folder that we can `c [tab]` to
-export PROJECTS=~/git
+export PROJECTS=~/Code
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
@@ -11,29 +11,28 @@ then
   source ~/.localrc
 fi
 
-# all of our zsh files
+# all of our bash files
 typeset -U config_files
-config_files=($ZSH/**/*.zsh)
+config_files=($BASH/**/*.bash)
 
 # load the path files
-for file in ${(M)config_files:#*/path.zsh}
+for file in ${(M)config_files:#*/path.bash}
 do
+  echo path $file
   source $file
 done
 
 # load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
+for file in ${${config_files:#*/path.bash}:#*/completion.bash}
 do
+  echo every $file
   source $file
 done
 
-# initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit
-
 # load every completion after autocomplete loads
-for file in ${(M)config_files:#*/completion.zsh}
+for file in ${(M)config_files:#*/completion.bash}
 do
+  echo completes $file
   source $file
 done
 

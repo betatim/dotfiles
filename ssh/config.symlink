@@ -1,0 +1,51 @@
+# defaults should go towards the end as processing stops at the first found
+# value
+
+
+Host plus6
+    ProxyCommand  ssh lbgatewaytunnel nc %h %p 2> /dev/null
+Host lbgatewaytunnel
+    HostName lbgw.cern.ch
+    GSSAPIAuthentication yes
+    PreferredAuthentications publickey,password
+    GSSAPITrustDNS yes
+    GSSAPIDelegateCredentials yes
+    ControlMaster auto
+    ControlPath /var/tmp/master-%r@%h-%p
+
+Host lxplus* pclhcbthead* plt*
+    GSSAPIAuthentication no 
+    GSSAPIDelegateCredentials yes
+    # Commenting out these two things seems to make proxycommand work
+    # for plt
+    #GSSAPIKeyExchange yes
+    GSSAPITrustDNS yes
+    ForwardX11 yes 
+    ForwardX11Timeout 8h
+    AddressFamily inet
+    ForwardAgent yes 
+    PreferredAuthentications gssapi-with-mic,gssapi,password
+    ControlMaster auto
+    ControlPath /var/tmp/master-%r@%h-%p
+Host lxplus
+    HostName lxplus.cern.ch
+Host lxplustunnel
+    HostName lxplus5.cern.ch
+    GSSAPIAuthentication yes
+    PreferredAuthentications publickey,password
+    GSSAPITrustDNS yes
+    GSSAPIDelegateCredentials yes
+Host plt
+    #GSSAPITrustDns no
+    HostName pclhcbthead.cern.ch
+    ProxyCommand  ssh lxplustunnel nc %h %p 2> /dev/null
+    PreferredAuthentications password
+
+Host pc121
+    HostName pc121.hep.manchester.ac.uk
+    ControlMaster auto
+    ControlPath /var/tmp/master-%r@%h-%p
+    Compression yes
+
+Host *
+    Protocol 2
