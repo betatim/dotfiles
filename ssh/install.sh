@@ -1,0 +1,1 @@
+ln -sf config $HOME/.ssh/config

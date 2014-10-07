@@ -1,0 +1,32 @@
+(global-font-lock-mode 1)
+;(set-keyboard-coding-system nil)
+(transient-mark-mode 1)
+(show-paren-mode 1)
+(normal-erase-is-backspace-mode 0)
+
+; erlang mode
+;(setq load-path (cons  "/usr/local/lib/erlang/lib/tools-2.6.10/emacs"
+;      load-path))
+;(setq erlang-root-dir "/usr/local/lib/erlang")
+;(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
+;(require 'erlang-start)
+
+(setq indent-tabs-mode nil)
+(require 'whitespace)
+(global-set-key "\C-c w" 'whitespace-mode)
+
+(set-face-foreground 'font-lock-comment-face "red")
+;(set-face-foreground 'font-lock-comment-delimiter-face "red")
+
+(add-hook 'python-mode-hook '(lambda () (define-key python-mode-map "\C-m" 'newline-and-indent)))
+
+;(load "~/.emacs.d/clang-format.el")
+;;(global-set-key (kbd "M-q") 'clang-format-region)
+;(add-hook 'c-mode-hook '(lambda () (define-key c-mode-map "M-q" 'clang-format-region)))
+;(add-hook 'c++-mode-hook '(lambda () (define-key c++-mode-map "M-q" 'clang-format-region)))
+
+;(defun my-c-initialization-hook ()
+;  (define-key c-mode-base-map "\C-m" 'c-context-line-break))
+;(add-hook 'c-initialization-hook 'my-c-initialization-hook)
+
+(global-set-key (kbd "C-x g") 'goto-line)
