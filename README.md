@@ -1,4 +1,4 @@
-# holman does dotfiles
+# betatim does dotfiles (holman style)
 
 ## dotfiles
 
