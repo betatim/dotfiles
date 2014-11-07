@@ -41,4 +41,7 @@ unset config_files
 
 
 # when starting a terminal, make it run in the default virtualenv
-workon default
+# when on my laptop, not on other hosts
+if [[ $(hostname) == pcnoka* ]] then 
+  workon default
+fi
