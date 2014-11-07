@@ -47,5 +47,10 @@ Host pc121
     ControlPath /var/tmp/master-%r@%h-%p
     Compression yes
 
+Host noka
+    HostName 192.168.1.24
+    ControlMaster auto
+    ControlPath /var/tmp/master-%r@%h-%p
+
 Host *
     Protocol 2

@@ -40,9 +40,22 @@ unpushed () {
 need_push () {
   if [[ $(unpushed) == "" ]]
   then
-    echo " "
+    echo ""
   else
     echo " with %{$fg_bold[magenta]%}unpushed%{$reset_color%} "
+  fi
+}
+
+virtualenv_prompt_info() {
+  if [ -n "$VIRTUAL_ENV" ]; then
+    if [ -f "$VIRTUAL_ENV/__name__" ]; then
+      local name=`cat $VIRTUAL_ENV/__name__`
+    elif [ `basename $VIRTUAL_ENV` = "__" ]; then
+      local name=$(basename $(dirname $VIRTUAL_ENV))
+    else
+      local name=$(basename $VIRTUAL_ENV)
+    fi
+    echo "($name)"
   fi
 }
 
@@ -57,8 +70,12 @@ user_and_host() {
 
 #export PROMPT=$'\n$(directory_name) $(git_dirty)$(need_push)\n› '
 export PROMPT=$'\n$(user_and_host) $(directory_name) $(git_dirty)$(need_push)\n$ '
+
+# stop virtualenv from adding to the prompt
+export VIRTUAL_ENV_DISABLE_PROMPT="y"
+
 set_prompt () {
-  export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
+  export RPROMPT="%{$fg_bold[cyan]%}$(virtualenv_prompt_info)%{$reset_color%}"
 }
 
 precmd() {

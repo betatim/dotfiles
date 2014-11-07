@@ -1,4 +1,2 @@
-if [[ $(hostname) == *lxplus* ]] then
-  export LD_LIBRARY_PATH=/afs/cern.ch/sw/lcg/external/Python/2.7.3/x86_64-slc5-gcc46-opt/lib:$LD_LIBRARY_PATH;
-  export PATH=$HOME/.local/bin:$PATH
-fi
+export PATH="./bin:/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH"
+export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"

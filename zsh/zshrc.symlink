@@ -38,3 +38,7 @@ do
 done
 
 unset config_files
+
+
+# when starting a terminal, make it run in the default virtualenv
+workon default

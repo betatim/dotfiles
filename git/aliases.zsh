@@ -2,7 +2,7 @@
 #   http://defunkt.github.com/hub/
 if (( $+commands[hub] ))
 then
-  hub_path=$(which -s hub)
+  hub_path=$(which hub)
   alias git=$hub_path
 fi
 
