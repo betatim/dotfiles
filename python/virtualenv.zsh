@@ -2,6 +2,8 @@ if [[ $(hostname) == *lxplus* ]] then
   export PYTHONPATH=$HOME/.local/lib/python2.7/site-packages:$HOME/w/private/soft/lib/python2.7/site-packages:$PYTHONPATH
   export WORKON_HOME=$HOME/w/private/virtualenvs-py2.7
   source $HOME/.local/bin/virtualenvwrapper.sh
+elif [ "$(hostname -d)" = "epfl.ch" ]; then
+  #echo "at epfl"
 else
   export WORKON_HOME=$HOME/virtualenvs
   source /usr/local/bin/virtualenvwrapper.sh

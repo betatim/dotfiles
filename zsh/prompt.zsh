@@ -57,6 +57,9 @@ virtualenv_prompt_info() {
     fi
     echo "($name)"
   fi
+  if [ -n "$CONDA_DEFAULT_ENV" ]; then
+    echo "($CONDA_DEFAULT_ENV)"
+  fi
 }
 
 directory_name() {
