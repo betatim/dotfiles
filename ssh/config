@@ -6,6 +6,8 @@ Host epfl
     HostName lphelc1a.epfl.ch
     User head
     ForwardX11 yes
+    ForwardAgent yes
+    PreferredAuthentications publickey,password
     ControlMaster auto
     ControlPath /var/tmp/master-%r@%h-%p
 
