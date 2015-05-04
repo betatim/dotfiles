@@ -2,6 +2,13 @@
 # value
 
 
+Host epfl
+    HostName lphelc1a.epfl.ch
+    User head
+    ForwardX11 yes
+    ControlMaster auto
+    ControlPath /var/tmp/master-%r@%h-%p
+
 Host plus6
     ProxyCommand  ssh lbgatewaytunnel nc %h %p 2> /dev/null
 Host lbgatewaytunnel
@@ -18,13 +25,14 @@ Host lxplus* pclhcbthead* plt*
     GSSAPIDelegateCredentials yes
     # Commenting out these two things seems to make proxycommand work
     # for plt
-    #GSSAPIKeyExchange yes
+    GSSAPIKeyExchange yes
     GSSAPITrustDNS yes
     ForwardX11 yes 
     ForwardX11Timeout 8h
     AddressFamily inet
     ForwardAgent yes 
-    PreferredAuthentications gssapi-with-mic,gssapi,password
+    #PreferredAuthentications gssapi-with-mic,gssapi,password
+    PreferredAuthentications password
     ControlMaster auto
     ControlPath /var/tmp/master-%r@%h-%p
 Host lxplus
@@ -54,3 +62,5 @@ Host noka
 
 Host *
     Protocol 2
+    ForwardX11 no
+    GSSAPIAuthentication no
